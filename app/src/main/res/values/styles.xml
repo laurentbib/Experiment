@@ -1,10 +1,36 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+    <style name="ExperimentTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowSharedElementsUseOverlay">false</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="DayExperiment" parent="@style/ExperimentTheme">
+        <item name="colorPrimary">@color/dayPrimary</item>
+        <item name="colorPrimaryDark">@color/dayPrimaryDark</item>
+        <item name="colorSecondary">@color/dayAccent</item>
+        <item name="android:colorBackground">@color/dayBackground</item>
+        <item name="android:windowBackground">@color/dayWindowBackground</item>
+    </style>
+
+    <style name="NightExperiment" parent="@style/ExperimentTheme">
+        <item name="colorPrimary">@color/nightPrimary</item>
+        <item name="colorPrimaryDark">@color/nightPrimaryDark</item>
+        <item name="colorSecondary">@color/nightAccent</item>
+        <item name="android:colorBackground">@color/nightBackground</item>
+        <item name="android:windowBackground">@color/nightWindowBackground</item>
+    </style>
+
+    <style name="Experiment.Headline6" parent="@style/TextAppearance.MaterialComponents.Headline6">
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:layout_margin">@dimen/small_margin</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Experiment.Caption" parent="@style/TextAppearance.MaterialComponents.Caption">
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:layout_margin">@dimen/small_margin</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

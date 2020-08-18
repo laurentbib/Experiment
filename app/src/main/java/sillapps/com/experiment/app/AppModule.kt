@@ -8,7 +8,8 @@ import sillapps.com.data.database.ExperimentDatabase
 import sillapps.com.data.mapper.RestaurantMapper
 import sillapps.com.domain.contract.RestaurantRepository
 import sillapps.com.domain.usecase.GetRestaurantUseCase
-import sillapps.com.experiment.home.viewmodel.RestaurantViewModel
+import sillapps.com.experiment.details.viewmodel.RestaurantDetailsViewModel
+import sillapps.com.experiment.home.viewmodel.HomeViewModel
 
 val appModule = module {
 
@@ -18,9 +19,13 @@ val appModule = module {
 
     single { get<ExperimentDatabase>().restaurantDAO() }
 
-    single<RestaurantRepository> { RestaurantRepositoryImpl(get(), get()) }
+    single { get<ExperimentDatabase>().discountDAO() }
+
+    single<RestaurantRepository> { RestaurantRepositoryImpl(get(), get(), get()) }
 
     factory { GetRestaurantUseCase(get()) }
 
-    viewModel { RestaurantViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
+
+    viewModel { RestaurantDetailsViewModel() }
 }

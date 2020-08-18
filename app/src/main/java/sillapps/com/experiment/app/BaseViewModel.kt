@@ -1,4 +1,4 @@
-package sillapps.com.experiment.utils
+package sillapps.com.experiment.app
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -6,7 +6,8 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import sillapps.com.experiment.home.contract.ViewModelContract
+import sillapps.com.experiment.utils.SingleLiveEvent
+import sillapps.com.experiment.utils.ViewModelContract
 
 open class BaseViewModel<STATE, EFFECT, EVENT> : ViewModel(), ViewModelContract<EVENT> {
 

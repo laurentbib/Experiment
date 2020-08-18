@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="sillapps.com.experiment.home.view.HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantDetailsFragment"
+            app:destination="@id/navigation_restaurant_details">
+            <argument
+                android:name="restaurant"
+                app:argType="sillapps.com.domain.model.Restaurant" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_restaurant_details"
+        android:name="sillapps.com.experiment.details.view.RestaurantDetailsFragment">
+        <argument
+            android:name="restaurant"
+            app:argType="sillapps.com.domain.model.Restaurant" />
+    </fragment>
+
+</navigation>

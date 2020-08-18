@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Experiment</string>
+    <string name="format_location">%1d km | %2d min </string>
+
+    <string name="restaurant_schedules_prefix">Pour</string>
+
+    <string name="transition_restaurant_img">transition_restaurant_img</string>
+    <string name="transition_restaurant_info">transition_restaurant_info</string>
 </resources>

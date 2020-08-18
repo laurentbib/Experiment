@@ -1,11 +1,14 @@
-package sillapps.com.experiment.utils
+package sillapps.com.experiment.app
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 
-abstract class BaseActivity<STATE, EFFECT, EVENT, ViewModel : BaseViewModel<STATE, EFFECT, EVENT>> : AppCompatActivity() {
+abstract class BaseFragment<STATE, EFFECT, EVENT, ViewModel : BaseViewModel<STATE, EFFECT, EVENT>>(private val layoutId: Int) : Fragment() {
 
     abstract val viewModel: ViewModel
 
@@ -21,10 +24,20 @@ abstract class BaseActivity<STATE, EFFECT, EVENT, ViewModel : BaseViewModel<STAT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Registering observers
         viewModel.viewStates().observe(this, viewStateObserver)
         viewModel.viewEffects().observe(this, viewEffectObserver)
     }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(layoutId, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initUI()
+    }
+
+    abstract fun initUI()
 
     abstract fun renderViewState(viewState: STATE)
 

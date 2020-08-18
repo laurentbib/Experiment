@@ -1,27 +1,21 @@
 package sillapps.com.experiment.home.contract
 
+import android.view.View
 import sillapps.com.domain.model.Restaurant
+import sillapps.com.experiment.utils.FetchStatus
 
-data class MainViewState(val fetchStatus: FetchStatus, val restaurants: List<Restaurant>)
+data class HomeViewState(val fetchStatus: FetchStatus, val restaurants: List<Restaurant>)
 
-sealed class FetchStatus {
-    object Fetching : FetchStatus()
-    object Fetched : FetchStatus()
-    object NotFetched : FetchStatus()
+sealed class HomeViewEffect {
+    data class GoToDetail(val restaurant: Restaurant, val view: View) : HomeViewEffect()
+    data class ShowToast(val message: String) : HomeViewEffect()
 }
 
-sealed class MainViewEffect {
-    data class ShowSnackbar(val message: String) : MainViewEffect()
-    data class ShowToast(val message: String) : MainViewEffect()
+sealed class HomeViewEvent {
+    object OnResume : HomeViewEvent()
+    data class RestaurantClicked(val restaurant: Restaurant, val view: View) : HomeViewEvent()
+    object OnBottomReached : HomeViewEvent()
 }
 
-sealed class MainViewEvent {
-    data class RestaurantClicked(val restaurant: Restaurant) : MainViewEvent()
-    object OnSwipeRefresh : MainViewEvent()
-    object FetchRestaurants : MainViewEvent()
-}
 
-internal interface ViewModelContract<EVENT> {
-    fun process(viewEvent: EVENT)
-}
 
