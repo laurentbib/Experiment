@@ -7,13 +7,13 @@ import sillapps.com.experiment.utils.FetchStatus
 data class HomeViewState(val fetchStatus: FetchStatus, val restaurants: List<Restaurant>)
 
 sealed class HomeViewEffect {
-    data class GoToDetail(val restaurant: Restaurant, val view: View) : HomeViewEffect()
+    data class GoToDetail(val restaurant: Restaurant, val views: List<View>) : HomeViewEffect()
     data class ShowToast(val message: String) : HomeViewEffect()
 }
 
 sealed class HomeViewEvent {
     object OnResume : HomeViewEvent()
-    data class RestaurantClicked(val restaurant: Restaurant, val view: View) : HomeViewEvent()
+    data class RestaurantClicked(val restaurant: Restaurant, val views: List<View>) : HomeViewEvent()
     object OnBottomReached : HomeViewEvent()
 }
 

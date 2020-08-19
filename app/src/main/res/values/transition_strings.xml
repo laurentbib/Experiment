@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="transition_img">transition_img %d</string>
+    <string name="transition_info">transition_info %d</string>
+    <string name="transition_logo">transition_logo %d</string>
+</resources>

@@ -4,6 +4,7 @@
 
     <string name="restaurant_schedules_prefix">Pour</string>
 
-    <string name="transition_restaurant_img">transition_restaurant_img</string>
-    <string name="transition_restaurant_info">transition_restaurant_info</string>
+    <string name="restaurant_details_nb_people">%d\npers.</string>
+    <string name="restaurant_details_min_amount">min %d€</string>
+    <string name="restaurant_details_discount">-%d%%</string>
 </resources>

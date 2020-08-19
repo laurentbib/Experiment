@@ -3,7 +3,7 @@ package sillapps.com.experiment.app
 import androidx.room.Room
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import sillapps.com.data.contract.RestaurantRepositoryImpl
+import sillapps.com.data.repository.RestaurantRepositoryImpl
 import sillapps.com.data.database.ExperimentDatabase
 import sillapps.com.data.mapper.RestaurantMapper
 import sillapps.com.domain.contract.RestaurantRepository

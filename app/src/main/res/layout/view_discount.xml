@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/restaurant_discount_view_width"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/left_line"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/restaurant_discount_line_height"
+        android:background="@android:color/darker_gray"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/nb_people"
+        app:layout_constraintEnd_toStartOf="@+id/nb_people"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nb_people"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/right_line"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/restaurant_discount_line_height"
+        android:background="@android:color/darker_gray"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/nb_people"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nb_people"
+        app:layout_constraintTop_toTopOf="@+id/nb_people"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/nb_people"
+        style="@style/TextView.Normal.Bold"
+        android:layout_width="@dimen/restaurant_discount_nb_people_size"
+        android:layout_height="@dimen/restaurant_discount_nb_people_size"
+        android:background="@drawable/background_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="3\npers." />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/min_amount"
+        style="@style/SpacedTextView.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nb_people"
+        tools:text="min 30$" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/discount_percent"
+        style="@style/SpacedTextView.Normal.Bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_rounded_dark"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/min_amount"
+        app:layout_constraintStart_toStartOf="@+id/min_amount"
+        app:layout_constraintTop_toBottomOf="@+id/min_amount"
+        tools:text="-15%" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,7 @@ class HomeFragment : BaseFragment<HomeViewState, HomeViewEffect, HomeViewEvent, 
     override fun initUI() {
         rw_restaurant?.run {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = RestaurantAdapter { restaurant, view -> viewModel.process(HomeViewEvent.RestaurantClicked(restaurant, view)) }
+            adapter = RestaurantAdapter { restaurant, views -> viewModel.process(HomeViewEvent.RestaurantClicked(restaurant, views)) }
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     if (!recyclerView.canScrollVertically(1)) viewModel.process(HomeViewEvent.OnBottomReached)
@@ -53,7 +53,7 @@ class HomeFragment : BaseFragment<HomeViewState, HomeViewEffect, HomeViewEvent, 
     override fun renderViewEffect(viewEffect: HomeViewEffect) {
         when (viewEffect) {
             is HomeViewEffect.GoToDetail -> {
-                val extras = FragmentNavigatorExtras(viewEffect.view to "img ${viewEffect.restaurant.id}")
+                val extras = FragmentNavigatorExtras(*viewEffect.views.map { it to it.transitionName }.toTypedArray())
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment(viewEffect.restaurant), extras)
             }
             is HomeViewEffect.ShowToast -> {

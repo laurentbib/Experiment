@@ -1,4 +1,4 @@
-package sillapps.com.data.contract
+package sillapps.com.data.repository
 
 import sillapps.com.data.database.DiscountDAO
 import sillapps.com.data.database.RestaurantDAO

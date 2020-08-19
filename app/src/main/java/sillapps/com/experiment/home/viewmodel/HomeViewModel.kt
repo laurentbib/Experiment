@@ -26,7 +26,7 @@ class HomeViewModel(val getRestaurantUseCase: GetRestaurantUseCase) : BaseViewMo
                 viewState = viewState.copy(fetchStatus = FetchStatus.Fetched)
             }
             is HomeViewEvent.RestaurantClicked -> {
-                viewEffect = HomeViewEffect.GoToDetail(viewEvent.restaurant, viewEvent.view)
+                viewEffect = HomeViewEffect.GoToDetail(viewEvent.restaurant, viewEvent.views)
             }
             is HomeViewEvent.OnBottomReached -> {
                 getRestaurants(true)

@@ -4,85 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/default_margin">
+    android:layout_margin="@dimen/default_margin"
+    android:background="?android:colorBackground">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/restaurant_img"
         android:layout_width="0dp"
         android:layout_height="@dimen/restaurant_view_height"
-        android:layout_marginBottom="@dimen/restaurant_view_bottom_offset"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_launcher_background" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/restaurant_info"
+    <View
+        android:id="@+id/restaurant_info_background"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/restaurant_view_background_height"
         android:background="@drawable/background_slider"
-        android:padding="@dimen/default_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurant_img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/restaurant_schedule_container"
-            android:layout_width="@dimen/restaurant_view_thumbnail_width"
-            android:layout_height="@dimen/restaurant_view_thumbnail_height"
-            android:background="@drawable/background_rounded"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/restaurant_logo"
+        android:layout_width="@dimen/restaurant_view_thumbnail_width"
+        android:layout_height="@dimen/restaurant_view_thumbnail_height"
+        android:background="@drawable/background_rounded_light"
+        android:padding="@dimen/default_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_info_background" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/restaurant_schedule_prefix"
-                style="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/restaurant_schedules_prefix"
-                app:layout_constraintBottom_toTopOf="@+id/restaurant_schedule"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/restaurant_schedule"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/restaurant_schedule_prefix"
-                tools:text="14h30" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/restaurant_schedule_container"
+        android:layout_width="@dimen/restaurant_view_thumbnail_width"
+        android:layout_height="@dimen/restaurant_view_thumbnail_height"
+        android:background="@drawable/background_rounded_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/restaurant_info_background">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/restaurant_name"
-            style="@style/Experiment.Headline6"
+            android:id="@+id/restaurant_schedule_prefix"
+            style="@style/TextView.Normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/restaurant_schedules_prefix"
+            app:layout_constraintBottom_toTopOf="@+id/restaurant_schedule"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_schedule_container"
-            tools:text="Café Mode" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/restaurant_location"
-            style="@style/Experiment.Caption"
+            android:id="@+id/restaurant_schedule"
+            style="@style/TextView.Big.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_name"
-            tools:text="1.2 km" />
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_schedule_prefix"
+            tools:text="14h30" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/restaurant_name"
+        style="@style/SpacedTextView.Big.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_schedule_container"
+        tools:text="Café Mode" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/restaurant_location"
+        style="@style/SpacedTextView.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_name"
+        tools:text="1.2 km | 14 min" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

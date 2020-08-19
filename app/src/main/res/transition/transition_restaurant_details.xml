@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="400"
+    android:interpolator="@android:interpolator/accelerate_quad"
+    android:transitionOrdering="together">
+
+    <transitionSet>
+        <targets>
+            <target android:targetId="@id/restaurant_img" />
+            <target android:targetId="@id/restaurant_info_background" />
+            <target android:targetId="@id/restaurant_logo" />
+        </targets>
+        <changeBounds />
+        <changeTransform />
+        <changeClipBounds />
+        <changeImageTransform />
+    </transitionSet>
+
+    <transitionSet>
+        <targets>
+            <target android:excludeId="@id/restaurant_img" />
+            <target android:excludeId="@id/restaurant_info_background" />
+            <target android:excludeId="@id/restaurant_logo" />
+            <target android:excludeId="@id/back_button" />
+        </targets>
+
+        <fade
+            android:fadingMode="fade_in_out"
+            android:startDelay="300" />
+    </transitionSet>
+
+</transitionSet>
