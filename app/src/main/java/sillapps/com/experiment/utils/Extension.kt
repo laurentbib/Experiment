@@ -12,11 +12,25 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
+import kotlin.random.Random
+
+@ExperimentalContracts
+fun calledOnce(run: () -> Unit) {
+    contract {
+        callsInPlace(run, InvocationKind.EXACTLY_ONCE)
+    }
+    run()
+}
 
 fun Fragment.waitForTransition(targetView: View) {
     postponeEnterTransition()
     targetView.doOnPreDraw { startPostponedEnterTransition() }
 }
+
+fun random(start: Int = 1, end: Int = 30) = Random.nextInt(start, end)
 
 fun ViewGroup.inflate(layoutId: Int): View = LayoutInflater.from(context).inflate(layoutId, this, false)
 
@@ -30,3 +44,4 @@ fun AppCompatImageView.loadImg(url: String, requestListener: RequestListener<Dra
 }
 
 fun AppCompatImageView.fadeIn(duration: Long): ViewPropertyAnimator = animate().setDuration(duration).alpha(1f)
+

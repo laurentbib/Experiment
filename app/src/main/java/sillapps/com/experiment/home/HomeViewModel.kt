@@ -1,29 +1,29 @@
-package sillapps.com.experiment.home.viewmodel
+package sillapps.com.experiment.home
 
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import sillapps.com.domain.usecase.GetRestaurantUseCase
-import sillapps.com.experiment.app.BaseViewModel
-import sillapps.com.experiment.home.contract.HomeViewEffect
-import sillapps.com.experiment.home.contract.HomeViewEvent
-import sillapps.com.experiment.home.contract.HomeViewState
+import sillapps.com.experiment.contract.BaseViewModel
 import sillapps.com.experiment.utils.FetchStatus
+import sillapps.com.experiment.view.LoadingView
+import sillapps.com.experiment.view.RestaurantView
 
 class HomeViewModel(val getRestaurantUseCase: GetRestaurantUseCase) : BaseViewModel<HomeViewState, HomeViewEffect, HomeViewEvent>() {
 
     init {
-        viewState = HomeViewState(
-            fetchStatus = FetchStatus.Fetching,
-            restaurants = emptyList()
-        )
-        getRestaurants()
+        viewState = HomeViewState(fetchStatus = FetchStatus.NotFetched, restaurants = emptyList())
     }
 
     override fun process(viewEvent: HomeViewEvent) {
         super.process(viewEvent)
         when (viewEvent) {
-            is HomeViewEvent.OnResume -> {
-                viewState = viewState.copy(fetchStatus = FetchStatus.Fetched)
+            is HomeViewEvent.Init -> {
+                if (viewState.restaurants.isEmpty()) {
+                    viewState = viewState.copy(fetchStatus = FetchStatus.Fetching)
+                    getRestaurants()
+                } else {
+                    viewState = viewState.copy(fetchStatus = FetchStatus.Fetched)
+                }
             }
             is HomeViewEvent.RestaurantClicked -> {
                 viewEffect = HomeViewEffect.GoToDetail(viewEvent.restaurant, viewEvent.views)
@@ -38,8 +38,8 @@ class HomeViewModel(val getRestaurantUseCase: GetRestaurantUseCase) : BaseViewMo
         viewModelScope.launch {
             getRestaurantUseCase(forceNewCall).either({
                 viewState = viewState.copy(fetchStatus = FetchStatus.NotFetched)
-            }, {
-                viewState = viewState.copy(fetchStatus = FetchStatus.Fetched, restaurants = it)
+            }, { restaurants ->
+                viewState = viewState.copy(fetchStatus = FetchStatus.Fetched, restaurants = restaurants.map { RestaurantView(it) }.plus(LoadingView()))
             })
         }
     }

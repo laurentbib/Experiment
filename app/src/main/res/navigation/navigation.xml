@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="sillapps.com.experiment.home.view.HomeFragment">
+        android:name="sillapps.com.experiment.home.HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_restaurantDetailsFragment"
             app:destination="@id/navigation_restaurant_details">
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_restaurant_details"
-        android:name="sillapps.com.experiment.details.view.RestaurantDetailsFragment">
+        android:name="sillapps.com.experiment.details.RestaurantDetailsFragment">
         <argument
             android:name="restaurant"
             app:argType="sillapps.com.domain.model.Restaurant" />

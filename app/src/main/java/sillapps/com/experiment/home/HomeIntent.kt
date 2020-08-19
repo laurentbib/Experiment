@@ -1,18 +1,18 @@
-package sillapps.com.experiment.home.contract
+package sillapps.com.experiment.home
 
 import android.view.View
 import sillapps.com.domain.model.Restaurant
+import sillapps.com.experiment.contract.AdapterItem
 import sillapps.com.experiment.utils.FetchStatus
 
-data class HomeViewState(val fetchStatus: FetchStatus, val restaurants: List<Restaurant>)
+data class HomeViewState(val fetchStatus: FetchStatus, val restaurants: List<AdapterItem>)
 
 sealed class HomeViewEffect {
     data class GoToDetail(val restaurant: Restaurant, val views: List<View>) : HomeViewEffect()
-    data class ShowToast(val message: String) : HomeViewEffect()
 }
 
 sealed class HomeViewEvent {
-    object OnResume : HomeViewEvent()
+    object Init : HomeViewEvent()
     data class RestaurantClicked(val restaurant: Restaurant, val views: List<View>) : HomeViewEvent()
     object OnBottomReached : HomeViewEvent()
 }

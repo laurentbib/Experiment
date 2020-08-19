@@ -1,4 +1,4 @@
-package sillapps.com.experiment.app
+package sillapps.com.experiment.contract
 
 import android.os.Bundle
 import android.util.Log

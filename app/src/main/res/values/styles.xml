@@ -1,8 +1,8 @@
 <resources>
 
     <style name="ExperimentTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowSharedElementsUseOverlay">false</item>
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
     </style>
 
     <style name="DayExperiment" parent="@style/ExperimentTheme">

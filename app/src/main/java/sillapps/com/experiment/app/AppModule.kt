@@ -8,8 +8,8 @@ import sillapps.com.data.database.ExperimentDatabase
 import sillapps.com.data.mapper.RestaurantMapper
 import sillapps.com.domain.contract.RestaurantRepository
 import sillapps.com.domain.usecase.GetRestaurantUseCase
-import sillapps.com.experiment.details.viewmodel.RestaurantDetailsViewModel
-import sillapps.com.experiment.home.viewmodel.HomeViewModel
+import sillapps.com.experiment.details.RestaurantDetailsViewModel
+import sillapps.com.experiment.home.HomeViewModel
 
 val appModule = module {
 

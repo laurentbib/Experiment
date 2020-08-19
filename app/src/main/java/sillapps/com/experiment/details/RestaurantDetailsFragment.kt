@@ -1,4 +1,4 @@
-package sillapps.com.experiment.details.view
+package sillapps.com.experiment.details
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -15,16 +15,10 @@ import com.bumptech.glide.request.target.Target
 import kotlinx.android.synthetic.main.fragment_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import sillapps.com.experiment.R
-import sillapps.com.experiment.app.BaseFragment
-import sillapps.com.experiment.details.adapter.DiscountAdapter
-import sillapps.com.experiment.details.contract.DetailsViewEffect
-import sillapps.com.experiment.details.contract.DetailsViewEvent
-import sillapps.com.experiment.details.contract.DetailsViewState
-import sillapps.com.experiment.details.viewmodel.RestaurantDetailsViewModel
+import sillapps.com.experiment.adapter.GenericAdapter
+import sillapps.com.experiment.contract.BaseFragment
 import sillapps.com.experiment.utils.FetchStatus
 import sillapps.com.experiment.utils.fadeIn
-import sillapps.com.experiment.utils.loadImg
-import kotlin.random.Random
 
 class RestaurantDetailsFragment : BaseFragment<DetailsViewState, DetailsViewEffect, DetailsViewEvent, RestaurantDetailsViewModel>(R.layout.fragment_details) {
 
@@ -39,7 +33,7 @@ class RestaurantDetailsFragment : BaseFragment<DetailsViewState, DetailsViewEffe
         }
 
         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-            startPostponedEnterTransition()
+            if (restaurant_img?.drawable != null || restaurant_logo?.drawable != null) startPostponedEnterTransition()
             return false
         }
     }
@@ -55,13 +49,11 @@ class RestaurantDetailsFragment : BaseFragment<DetailsViewState, DetailsViewEffe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        restaurant_img?.transitionName = getString(R.string.transition_img, args.restaurant.id)
-        restaurant_info_background?.transitionName = getString(R.string.transition_info, args.restaurant.id)
-        restaurant_logo?.transitionName = getString(R.string.transition_logo, args.restaurant.id)
+        setTransitionNames()
     }
 
     override fun initUI() {
-        viewModel.process(DetailsViewEvent.Open(args.restaurant))
+        viewModel.process(DetailsViewEvent.Init(args.restaurant))
         rw_discount?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         back_button?.setOnClickListener { viewModel.process(DetailsViewEvent.BackPressClicked) }
     }
@@ -69,13 +61,8 @@ class RestaurantDetailsFragment : BaseFragment<DetailsViewState, DetailsViewEffe
     override fun renderViewState(viewState: DetailsViewState) {
         when (viewState.fetchStatus) {
             FetchStatus.Fetched -> {
-                viewState.restaurant?.run {
-                    restaurant_img?.loadImg(mainPictureUrl, glideListener)
-                    restaurant_logo?.loadImg(logoUrl, glideListener)
-                    restaurant_name?.text = name
-                    restaurant_location?.text = getString(R.string.format_location, Random.nextInt(1, 10), Random.nextInt(1, 20))
-                    rw_discount?.adapter = DiscountAdapter(discounts)
-                }
+                viewState.restaurant?.bind(this.requireView(), glideListener = glideListener)
+                rw_discount?.adapter = GenericAdapter(viewState.discounts.toMutableList())
             }
         }
     }
@@ -86,5 +73,11 @@ class RestaurantDetailsFragment : BaseFragment<DetailsViewState, DetailsViewEffe
                 findNavController().popBackStack()
             }
         }
+    }
+
+    private fun setTransitionNames() {
+        restaurant_img?.transitionName = getString(R.string.transition_img, args.restaurant.id)
+        restaurant_info_background?.transitionName = getString(R.string.transition_info, args.restaurant.id)
+        restaurant_logo?.transitionName = getString(R.string.transition_logo, args.restaurant.id)
     }
 }

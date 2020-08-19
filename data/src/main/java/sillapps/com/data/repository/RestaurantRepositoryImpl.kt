@@ -24,7 +24,7 @@ class RestaurantRepositoryImpl(
                         val insertedId = restaurantDAO.insert(restaurantMapper.restaurantToDB(restaurantResponse))
                         discountDAO.insertAll(restaurantResponse.groupedOrderDiscounts.map { restaurantMapper.discountToDB(insertedId.toInt(), it) })
                     }
-                    Either.Successful(getData())
+                    Either.Successful(getData().minus(restaurants))
                 }
                 is Either.Failure -> {
                     Either.Failure(call.fail)
