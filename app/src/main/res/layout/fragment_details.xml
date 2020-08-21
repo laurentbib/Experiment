@@ -26,10 +26,10 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/restaurant_view_background_height"
             android:background="@drawable/background_slider"
+            android:translationY="@dimen/restaurant_view_down_translation"
             app:layout_constraintBottom_toBottomOf="@+id/restaurant_img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_img" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/restaurant_logo"
@@ -37,9 +37,11 @@
             android:layout_height="@dimen/restaurant_view_thumbnail_height"
             android:background="@drawable/background_rounded_light"
             android:padding="@dimen/default_padding"
+            android:translationY="@dimen/restaurant_view_up_translation"
+            app:layout_constraintBottom_toBottomOf="@+id/restaurant_info_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/restaurant_info_background"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_info_background"
             tools:src="@drawable/ic_launcher_background" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -49,7 +51,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_info_background"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_logo"
             tools:text="Café Mode" />
 
         <com.google.android.material.textview.MaterialTextView

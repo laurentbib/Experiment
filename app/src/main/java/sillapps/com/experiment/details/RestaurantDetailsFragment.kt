@@ -61,7 +61,7 @@ class RestaurantDetailsFragment : BaseFragment<DetailsViewState, DetailsViewEffe
     override fun renderViewState(viewState: DetailsViewState) {
         when (viewState.fetchStatus) {
             FetchStatus.Fetched -> {
-                viewState.restaurant?.bind(this.requireView(), glideListener = glideListener)
+                viewState.restaurant?.bind(requireView(), glideListener = glideListener)
                 rw_discount?.adapter = GenericAdapter(viewState.discounts.toMutableList())
             }
         }

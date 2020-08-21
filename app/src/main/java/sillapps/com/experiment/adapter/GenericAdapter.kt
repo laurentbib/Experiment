@@ -18,8 +18,8 @@ class GenericAdapter(
     val onBottomReached: (() -> Unit)? = null
 ) : RecyclerView.Adapter<GenericAdapter.GenericViewHolder>() {
 
-    fun addRestaurants(restaurants: List<AdapterItem>) {
-        this.adapterItems.removeAll { it is LoadingView }
+    fun updateRestaurants(restaurants: List<AdapterItem>) {
+        this.adapterItems.clear()
         this.adapterItems.addAll(restaurants)
         notifyDataSetChanged()
     }
@@ -37,7 +37,7 @@ class GenericAdapter(
         @ExperimentalContracts
         fun bind(adapterItem: AdapterItem) {
             when (adapterItem) {
-                is RestaurantView -> adapterItem.bind(itemView, onRestaurantClick)
+                is RestaurantView -> adapterItem.bind(itemView, onRestaurantClick, withPlaceHolder = true)
                 is DiscountView -> adapterItem.bind(itemView, adapterItem == adapterItems.first(), adapterItem == adapterItems.last())
                 is LoadingView -> calledOnce { onBottomReached?.invoke() }
             }

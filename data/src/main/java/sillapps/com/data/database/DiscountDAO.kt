@@ -8,11 +8,11 @@ import sillapps.com.data.databaseobject.DiscountDBObject
 @Dao
 interface DiscountDAO {
     @Query("SELECT * FROM DISCOUNT WHERE RESTAURANT_ID = :restaurantId")
-    fun getDiscounts(restaurantId: Int): List<DiscountDBObject>
+    suspend fun getDiscounts(restaurantId: Int): List<DiscountDBObject>
 
     @Insert
-    fun insertAll(discounts: List<DiscountDBObject>)
+    suspend fun insertAll(discounts: List<DiscountDBObject>)
 
     @Query("DELETE FROM DISCOUNT")
-    fun purge()
+    suspend fun purge()
 }

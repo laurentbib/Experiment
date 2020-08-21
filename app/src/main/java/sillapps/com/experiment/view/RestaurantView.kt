@@ -14,10 +14,10 @@ class RestaurantView(private val restaurant: Restaurant) : AdapterItem {
 
     override val layoutId = R.layout.view_restaurant
 
-    fun bind(itemView: View, onClick: ((Restaurant, List<View>) -> Unit)? = null, glideListener: RequestListener<Drawable>? = null) = with(itemView) {
+    fun bind(itemView: View, onClick: ((Restaurant, List<View>) -> Unit)? = null, glideListener: RequestListener<Drawable>? = null, withPlaceHolder: Boolean = false) = with(itemView) {
         setupTransition(itemView, restaurant.id)
-        restaurant_img?.loadImg(restaurant.mainPictureUrl, glideListener)
-        restaurant_logo?.loadImg(restaurant.logoUrl, glideListener)
+        restaurant_img?.loadImg(restaurant.mainPictureUrl, glideListener, withPlaceHolder)
+        restaurant_logo?.loadImg(restaurant.logoUrl, glideListener, withPlaceHolder)
         restaurant_schedule?.text = restaurant.availableAt
         restaurant_name?.text = restaurant.name
         restaurant_location?.text = context.getString(R.string.format_location, random(), random())

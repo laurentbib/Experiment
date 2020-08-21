@@ -16,27 +16,29 @@ class RestaurantRepositoryImpl(
 ) : RestaurantRepository {
 
     override suspend fun getRestaurants(forceNewCall: Boolean): Either<ErrorCode, List<Restaurant>> {
-        val restaurants = getData()
+        val restaurants = getDataFromDB()
         return if (forceNewCall || restaurants.isEmpty()) {
-            when (val call = RetrofitHelper.getRestaurants()) {
-                is Either.Successful -> {
-                    call.success.restaurants.forEach { restaurantResponse ->
-                        val insertedId = restaurantDAO.insert(restaurantMapper.restaurantToDB(restaurantResponse))
-                        discountDAO.insertAll(restaurantResponse.groupedOrderDiscounts.map { restaurantMapper.discountToDB(insertedId.toInt(), it) })
-                    }
-                    Either.Successful(getData().minus(restaurants))
-                }
-                is Either.Failure -> {
-                    Either.Failure(call.fail)
-                }
-            }
+            launchWSandGetDataFromDB()
         } else {
             Either.Successful(restaurants)
         }
     }
 
-    private fun getData() = restaurantDAO.getRestaurants().map {
+    private suspend fun getDataFromDB() = restaurantDAO.getRestaurants().map {
         val discounts = discountDAO.getDiscounts(it.id)
         restaurantMapper.restaurantFromDB(it, discounts)
+    }
+
+    private suspend fun launchWSandGetDataFromDB(): Either<ErrorCode, List<Restaurant>> {
+        return when (val call = RetrofitHelper.getRestaurants()) {
+            is Either.Successful -> {
+                call.success.restaurants.forEach { restaurantResponse ->
+                    val insertedId = restaurantDAO.insert(restaurantMapper.restaurantToDB(restaurantResponse))
+                    discountDAO.insertAll(restaurantResponse.groupedOrderDiscounts.map { restaurantMapper.discountToDB(insertedId.toInt(), it) })
+                }
+                Either.Successful(getDataFromDB())
+            }
+            is Either.Failure -> Either.Failure(call.fail)
+        }
     }
 }

@@ -31,16 +31,19 @@ class HomeFragment : BaseFragment<HomeViewState, HomeViewEffect, HomeViewEvent, 
                 onBottomReached = { viewModel.process(HomeViewEvent.OnBottomReached) }
             )
         }
+        swipe_refresh?.setOnRefreshListener {
+            viewModel.process(HomeViewEvent.OnSwipeRefresh)
+        }
     }
 
     override fun renderViewState(viewState: HomeViewState) {
         when (viewState.fetchStatus) {
             FetchStatus.Fetching -> {
-                progress?.visibility = View.VISIBLE
+                swipe_refresh?.isRefreshing = true
             }
             FetchStatus.Fetched -> {
-                progress?.visibility = View.GONE
-                (rw_restaurant?.adapter as? GenericAdapter)?.addRestaurants(viewState.restaurants)
+                swipe_refresh?.isRefreshing = false
+                (rw_restaurant?.adapter as? GenericAdapter)?.updateRestaurants(viewState.restaurants)
             }
         }
     }

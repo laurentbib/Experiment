@@ -8,11 +8,11 @@ import sillapps.com.data.databaseobject.RestaurantDBObject
 @Dao
 interface RestaurantDAO {
     @Query("SELECT * FROM RESTAURANT")
-    fun getRestaurants(): List<RestaurantDBObject>
+    suspend fun getRestaurants(): List<RestaurantDBObject>
 
     @Insert
-    fun insert(restaurants: RestaurantDBObject): Long
+    suspend fun insert(restaurants: RestaurantDBObject): Long
 
     @Query("DELETE FROM RESTAURANT")
-    fun purge()
+    suspend fun purge()
 }

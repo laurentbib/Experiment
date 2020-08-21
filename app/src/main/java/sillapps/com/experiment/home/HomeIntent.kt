@@ -13,6 +13,7 @@ sealed class HomeViewEffect {
 
 sealed class HomeViewEvent {
     object Init : HomeViewEvent()
+    object OnSwipeRefresh : HomeViewEvent()
     data class RestaurantClicked(val restaurant: Restaurant, val views: List<View>) : HomeViewEvent()
     object OnBottomReached : HomeViewEvent()
 }
