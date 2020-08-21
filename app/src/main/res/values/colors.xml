@@ -4,19 +4,10 @@
     <color name="dayPrimaryDark">#0081CB</color>
     <color name="dayAccent">#D81B60</color>
     <color name="dayBackground">@android:color/white</color>
-    <color name="dayWindowBackground">#FAFAFA</color>
+    <color name="brightWindowBackground">#FAFAFA</color>
+    <color name="darkWindowBackground">#37474f</color>
 
     <color name="dayTextColor">#37474f</color>
     <color name="dayTextColorSecondary">@android:color/black</color>
     <color name="dayTextColorCaption">@android:color/darker_gray</color>
-
-    <color name="nightPrimary">#1a237e</color>
-    <color name="nightPrimaryDark">#000051</color>
-    <color name="nightAccent">#8c0032</color>
-    <color name="nightBackground">@android:color/black</color>
-    <color name="nightWindowBackground">#37474f</color>
-
-    <color name="nightTextColor">#EEEEEE</color>
-    <color name="nightTextColorSecondary">@android:color/white</color>
-    <color name="nightTextColorCaption">@android:color/darker_gray</color>
 </resources>

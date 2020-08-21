@@ -18,7 +18,7 @@ import sillapps.com.data.utils.NO_ID
 )
 data class DiscountDBObject(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "ID") val id: Int = NO_ID,
-    @ColumnInfo(name = "RESTAURANT_ID") val restaurantId: Int,
+    @ColumnInfo(name = "RESTAURANT_ID", index = true) val restaurantId: Int,
     @ColumnInfo(name = "NB_PEOPLE") val nbPeople: Int,
     @ColumnInfo(name = "MIN_AMOUNT") val minimumAmount: Int,
     @ColumnInfo(name = "DISCOUNT_PERCENT") val discountPercent: Int

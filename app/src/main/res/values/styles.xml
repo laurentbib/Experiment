@@ -10,22 +10,10 @@
         <item name="colorPrimaryDark">@color/dayPrimaryDark</item>
         <item name="colorSecondary">@color/dayAccent</item>
         <item name="android:colorBackground">@color/dayBackground</item>
-        <item name="android:windowBackground">@color/dayWindowBackground</item>
+        <item name="android:windowBackground">@color/brightWindowBackground</item>
         <item name="textColor">@color/dayTextColor</item>
         <item name="textColorSecondary">@color/dayTextColorSecondary</item>
         <item name="textColorCaption">@color/dayTextColorCaption</item>
-
-    </style>
-
-    <style name="NightExperiment" parent="@style/ExperimentTheme">
-        <item name="colorPrimary">@color/nightPrimary</item>
-        <item name="colorPrimaryDark">@color/nightPrimaryDark</item>
-        <item name="colorSecondary">@color/nightAccent</item>
-        <item name="android:colorBackground">@color/nightBackground</item>
-        <item name="android:windowBackground">@color/nightWindowBackground</item>
-        <item name="textColor">@color/nightTextColor</item>
-        <item name="textColorSecondary">@color/nightTextColorSecondary</item>
-        <item name="textColorCaption">@color/nightTextColorCaption</item>
     </style>
 
     <style name="TextView">
