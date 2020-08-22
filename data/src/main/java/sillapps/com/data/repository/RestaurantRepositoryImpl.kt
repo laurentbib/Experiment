@@ -24,8 +24,8 @@ class RestaurantRepositoryImpl(
         }
     }
 
-    private suspend fun getDataFromDB() = restaurantDAO.getRestaurants().map {
-        val discounts = discountDAO.getDiscounts(it.id)
+    private fun getDataFromDB() = restaurantDAO.getAll().map {
+        val discounts = discountDAO.getByRestaurantId(it.id)
         restaurantMapper.restaurantFromDB(it, discounts)
     }
 

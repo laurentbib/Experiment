@@ -16,7 +16,7 @@ class RestaurantView(private val restaurant: Restaurant) : AdapterItem {
 
     fun bind(itemView: View, onClick: ((Restaurant, List<View>) -> Unit)? = null, glideListener: RequestListener<Drawable>? = null, withPlaceHolder: Boolean = false) = with(itemView) {
         setupTransition(itemView, restaurant.id)
-        restaurant_img?.loadImg(restaurant.mainPictureUrl, glideListener, withPlaceHolder)
+        restaurant_img?.loadImg(restaurant.backgroundUrl, glideListener, withPlaceHolder)
         restaurant_logo?.loadImg(restaurant.logoUrl, glideListener, withPlaceHolder)
         restaurant_schedule?.text = restaurant.availableAt
         restaurant_name?.text = restaurant.name

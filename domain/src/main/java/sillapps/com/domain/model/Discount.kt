@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Discount(
+    val id: Int,
     val restaurantId: Int,
     val nbPeople: Int,
     val minimumAmount: Int,

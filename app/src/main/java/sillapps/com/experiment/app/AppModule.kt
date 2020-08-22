@@ -21,7 +21,7 @@ val appModule = module {
     single { RestaurantMapper() }
 
     // UseCase
-    factory { GetRestaurantUseCase(get()) }
+    single { GetRestaurantUseCase(get()) }
 
     // ViewModel
     viewModel { HomeViewModel(get()) }

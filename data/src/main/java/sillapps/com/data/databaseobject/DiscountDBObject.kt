@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
-import sillapps.com.data.utils.NO_ID
+import sillapps.com.data.utils.*
 
 @Entity(
     tableName = "DISCOUNT",

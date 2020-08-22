@@ -5,8 +5,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import sillapps.com.domain.model.ErrorCode
 import sillapps.com.domain.model.Either
+import sillapps.com.domain.model.ErrorCode
 
 object RetrofitHelper {
 

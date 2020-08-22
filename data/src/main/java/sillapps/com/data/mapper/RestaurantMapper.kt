@@ -4,18 +4,17 @@ import sillapps.com.data.databaseobject.DiscountDBObject
 import sillapps.com.data.databaseobject.RestaurantDBObject
 import sillapps.com.data.response.DiscountResponse
 import sillapps.com.data.response.RestaurantResponse
-import sillapps.com.data.utils.EMPTY_STR
+import sillapps.com.data.utils.formatDate
 import sillapps.com.domain.model.Discount
 import sillapps.com.domain.model.Restaurant
-import java.text.SimpleDateFormat
-import java.util.*
 
 class RestaurantMapper {
 
     fun restaurantToDB(restaurantResponse: RestaurantResponse) = RestaurantDBObject(
         name = restaurantResponse.name,
+        description = restaurantResponse.description,
         availableAt = restaurantResponse.availableAt,
-        mainPictureUrl = restaurantResponse.mainPicture.url,
+        backgroundUrl = restaurantResponse.background.url,
         logoUrl = restaurantResponse.logo.url
     )
 
@@ -30,22 +29,18 @@ class RestaurantMapper {
     fun restaurantFromDB(restaurantDataObject: RestaurantDBObject, discounts: List<DiscountDBObject>) = Restaurant(
         restaurantDataObject.id,
         restaurantDataObject.name,
+        restaurantDataObject.description,
         restaurantDataObject.availableAt.formatDate(),
-        restaurantDataObject.mainPictureUrl,
+        restaurantDataObject.backgroundUrl,
         restaurantDataObject.logoUrl,
         discounts.map { discountFromDB(it) }
     )
 
     private fun discountFromDB(discountDBObject: DiscountDBObject) = Discount(
+        discountDBObject.id,
         discountDBObject.restaurantId,
         discountDBObject.nbPeople,
         discountDBObject.minimumAmount,
         discountDBObject.discountPercent
     )
-
-    private fun String.formatDate(): String {
-        val inFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
-        val outFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-        return outFormat.format(inFormat.parse(this) ?: EMPTY_STR)
-    }
 }
