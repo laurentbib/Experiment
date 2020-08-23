@@ -30,8 +30,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
 
@@ -45,8 +52,7 @@ dependencies {
     // Test
     testImplementation "junit:junit:$rootProject.junit_version"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.junit_ext_version"
-    androidTestImplementation "androidx.test:rules:$rootProject.junit_ext_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso_version"
+    androidTestImplementation "androidx.test:rules:$rootProject.test_rule_version"
     testImplementation "androidx.arch.core:core-testing:$rootProject.arch_core_version"
 
     // Koin

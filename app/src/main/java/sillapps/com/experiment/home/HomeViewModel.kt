@@ -8,8 +8,7 @@ import sillapps.com.experiment.utils.FetchStatus
 import sillapps.com.experiment.view.LoadingView
 import sillapps.com.experiment.view.RestaurantView
 
-class HomeViewModel(val getRestaurantUseCase: GetRestaurantUseCase) :
-    BaseViewModel<HomeViewState, HomeViewEffect, HomeViewEvent>() {
+class HomeViewModel(val getRestaurantUseCase: GetRestaurantUseCase) : BaseViewModel<HomeViewState, HomeViewEffect, HomeViewEvent>() {
 
     init {
         viewState = HomeViewState(fetchStatus = FetchStatus.NotFetched, restaurants = emptyList())
@@ -27,8 +26,8 @@ class HomeViewModel(val getRestaurantUseCase: GetRestaurantUseCase) :
                 }
             }
             is HomeViewEvent.OnSwipeRefresh -> getRestaurants()
-            is HomeViewEvent.RestaurantClicked -> viewEffect = HomeViewEffect.GoToDetail(viewEvent.restaurant, viewEvent.views)
             is HomeViewEvent.OnBottomReached -> getRestaurants(true)
+            is HomeViewEvent.RestaurantClicked -> viewEffect = HomeViewEffect.GoToDetail(viewEvent.restaurant, viewEvent.views)
         }
     }
 
