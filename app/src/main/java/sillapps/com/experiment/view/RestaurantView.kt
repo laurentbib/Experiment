@@ -3,7 +3,13 @@ package sillapps.com.experiment.view
 import android.graphics.drawable.Drawable
 import android.view.View
 import com.bumptech.glide.request.RequestListener
+import kotlinx.android.synthetic.main.fragment_details.view.*
 import kotlinx.android.synthetic.main.view_restaurant.view.*
+import kotlinx.android.synthetic.main.view_restaurant.view.restaurant_img
+import kotlinx.android.synthetic.main.view_restaurant.view.restaurant_info_background
+import kotlinx.android.synthetic.main.view_restaurant.view.restaurant_location
+import kotlinx.android.synthetic.main.view_restaurant.view.restaurant_logo
+import kotlinx.android.synthetic.main.view_restaurant.view.restaurant_name
 import sillapps.com.domain.model.Restaurant
 import sillapps.com.experiment.R
 import sillapps.com.experiment.contract.AdapterItem
@@ -20,6 +26,7 @@ class RestaurantView(private val restaurant: Restaurant) : AdapterItem {
         restaurant_logo?.loadImg(restaurant.logoUrl, glideListener, withPlaceHolder)
         restaurant_schedule?.text = restaurant.availableAt
         restaurant_name?.text = restaurant.name
+        restaurant_description?.text = restaurant.description
         restaurant_location?.text = context.getString(R.string.format_location, random(), random())
         onClick?.let { setOnClickListener { it(restaurant, listOf(restaurant_img, restaurant_info_background, restaurant_logo)) } }
     }

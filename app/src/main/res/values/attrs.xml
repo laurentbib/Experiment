@@ -3,4 +3,6 @@
     <attr name="textColor" format="reference" />
     <attr name="textColorSecondary" format="reference" />
     <attr name="textColorCaption" format="reference" />
+    <attr name="colorShimmerBackground" format="reference" />
+    <attr name="colorShimmerView" format="reference" />
 </resources>

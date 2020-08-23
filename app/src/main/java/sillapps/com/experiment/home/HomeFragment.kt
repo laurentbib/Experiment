@@ -6,12 +6,12 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.useless_error.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import sillapps.com.experiment.R
 import sillapps.com.experiment.adapter.GenericAdapter
 import sillapps.com.experiment.contract.BaseFragment
-import sillapps.com.experiment.utils.FetchStatus
-import sillapps.com.experiment.utils.waitForTransition
+import sillapps.com.experiment.utils.*
 
 class HomeFragment : BaseFragment<HomeViewState, HomeViewEffect, HomeViewEvent, HomeViewModel>(R.layout.fragment_home) {
 
@@ -31,19 +31,22 @@ class HomeFragment : BaseFragment<HomeViewState, HomeViewEffect, HomeViewEvent, 
                 onBottomReached = { viewModel.process(HomeViewEvent.OnBottomReached) }
             )
         }
-        swipe_refresh?.setOnRefreshListener {
-            viewModel.process(HomeViewEvent.OnSwipeRefresh)
-        }
+        swipe_refresh?.setOnRefreshListener { viewModel.process(HomeViewEvent.OnSwipeRefresh) }
     }
 
     override fun renderViewState(viewState: HomeViewState) {
         when (viewState.fetchStatus) {
-            FetchStatus.Fetching -> {
-                swipe_refresh?.isRefreshing = true
-            }
+            FetchStatus.Fetching -> if (viewState.restaurants.isEmpty()) rw_restaurant_shimmer?.beginShimmerAnim()
             FetchStatus.Fetched -> {
                 swipe_refresh?.isRefreshing = false
+                rw_restaurant_shimmer?.endShimmerAnim()
                 (rw_restaurant?.adapter as? GenericAdapter)?.updateRestaurants(viewState.restaurants)
+            }
+            is FetchStatus.Error -> {
+                swipe_refresh?.isRefreshing = false
+                rw_restaurant_shimmer?.endShimmerAnim()
+                activity?.showSnackbar(viewState.fetchStatus.msgRes)
+                uselessError(north, east, west)
             }
         }
     }

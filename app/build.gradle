@@ -77,6 +77,9 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide_version"
     implementation("com.github.bumptech.glide:recyclerview-integration:$rootProject.glide_version") { transitive = false }
 
+    // Shimmer
+    implementation "com.facebook.shimmer:shimmer:$rootProject.shimmer_version"
+
     implementation project(":domain")
     implementation project(":data")
 }

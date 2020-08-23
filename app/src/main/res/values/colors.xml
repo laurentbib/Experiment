@@ -10,4 +10,7 @@
     <color name="dayTextColor">#37474f</color>
     <color name="dayTextColorSecondary">@android:color/black</color>
     <color name="dayTextColorCaption">@android:color/darker_gray</color>
+
+    <color name="dayShimmerBackground">#E0E0E0</color>
+    <color name="dayShimmerView">#CFD8DC</color>
 </resources>

@@ -14,6 +14,8 @@
         <item name="textColor">@color/dayTextColor</item>
         <item name="textColorSecondary">@color/dayTextColorSecondary</item>
         <item name="textColorCaption">@color/dayTextColorCaption</item>
+        <item name="colorShimmerBackground">@color/dayShimmerBackground</item>
+        <item name="colorShimmerView">@color/dayShimmerView</item>
     </style>
 
     <style name="TextView">

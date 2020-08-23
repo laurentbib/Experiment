@@ -31,4 +31,8 @@
     <dimen name="restaurant_discount_view_width">120dp</dimen>
     <dimen name="restaurant_discount_nb_people_size">60dp</dimen>
     <dimen name="restaurant_discount_line_height">3dp</dimen>
+
+    <!-- Useless Error -->
+    <dimen name="error_size">200dp</dimen>
+    <dimen name="error_size_reverse">-200dp</dimen>
 </resources>

@@ -69,11 +69,11 @@
             style="@style/SpacedTextView.Big.Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description sur plusieurs lignes qui prends du coup pas mal de place. C'est dingue toute cette description !"
             app:layout_constraintBottom_toTopOf="@+id/rw_discount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_location" />
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_location"
+            tools:text="Description sur plusieurs lignes qui prends du coup pas mal de place. C'est dingue toute cette description !" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rw_discount"

@@ -40,28 +40,28 @@ class HomeFragmentTest {
 
     @Test
     fun setup() {
-        assertNotEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
+        assertEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
     }
 
     @Test
     @UiThreadTest
     fun init() {
         homeFragment.viewModel.process(HomeViewEvent.Init)
-        assertNotEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
+        assertEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
     }
 
     @Test
     @UiThreadTest
     fun onSwipeRefresh() {
         homeFragment.viewModel.process(HomeViewEvent.OnSwipeRefresh)
-        assertNotEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
+        assertEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
     }
 
     @Test
     @UiThreadTest
     fun onBottomReached() {
         homeFragment.viewModel.process(HomeViewEvent.OnBottomReached)
-        assertNotEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
+        assertEquals(FetchStatus.Fetching, homeFragment.viewModel.viewStates().value?.fetchStatus)
     }
 
     @Test
